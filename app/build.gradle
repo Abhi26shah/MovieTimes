@@ -1,0 +1,130 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    // Make sure that you have the Google services Gradle plugin
+    id 'com.google.gms.google-services'
+    // Add the Crashlytics Gradle plugin
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    namespace 'com.example.movietimes'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        flavorDimensions "default"
+        productFlavors {
+            create("production") {
+                applicationId 'com.example.movietimes'
+                versionCode 1
+                versionName '1.0'
+                buildConfigField 'String', 'BASE_URL', "${prod_base_url}"
+                buildConfigField 'Boolean', 'LOGGING_ENABLED', "${prod_log_enabled}"
+                buildConfigField 'String', 'IMAGE_BASE_URL', "${prod_image_base_url}"
+                buildConfigField 'String', 'API_KEY', "${prod_api_key}"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.0'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation "androidx.compose.ui:ui:$compose_ui_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation "androidx.compose.material:material:$compose_ui_version"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_ui_version"
+
+    // Adding Library for Tracking Application Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    // Adding Network Libraries
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+
+    // Adding Converter Libraries
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Adding RXJava Libraries
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    // Import the BoM for the Firebase platform
+//    implementation platform('com.google.firebase:firebase-bom:31.0.2')
+
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+
+    //Firebase Authentication Dependency
+    implementation 'com.google.firebase:firebase-auth-ktx:22.1.1'
+
+    //Firebase Realtime Database Dependency
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.2'
+
+    // Add the dependencies for the Firebase Cloud Messaging and Analytics libraries
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.1'
+
+    // Add the dependencies for the Jetpack Compose Navigation
+    implementation "androidx.navigation:navigation-compose:2.7.0"
+
+    // Add the dependencies for Coil library of the GIF Image View.
+    implementation "io.coil-kt:coil-compose:2.2.2"
+    implementation "io.coil-kt:coil-gif:2.1.0"
+
+    // Add the dependencies to change the system Ui Colors
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
+
+    //Add the dependency for AnimatedNavHost
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.28.0"
+
+    //Add the dependencies for Play Services Library Implementation (Required for Google Sign In Authentication)
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
+
+}

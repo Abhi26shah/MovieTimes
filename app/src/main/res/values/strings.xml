@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Movie Times</string>
+
+    <string name="mobile_number"> Mobile Number</string>
+    <string name="proceed">Proceed</string>
+    <string name="try_some_other_login_methods">Try Some Other Login Methods</string>
+    <string name="sign_in_with_google">Sign In With Google</string>
+    <string name="otp_verification">OTP Verification</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="search">Search</string>
+    <string name="trending_movies">Trending Movies</string>
+    <string name="now_playing">Now Playing Movies</string>
+    <string name="top_rated">Top Rated Movies</string>
+    <string name="trending_series">Trending Series</string>
+    <string name="upcoming_series">Upcoming Series</string>
+    <string name="now_playing_series">Now Playing Series</string>
+    <string name="top_rated_series">Top Rated Series</string>
+    <string name="search_by_movie_series_name">Search by Movie / Series Name</string>
+    <string name="recent_searches">Recent Searches</string>
+</resources>
